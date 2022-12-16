@@ -1,0 +1,128 @@
+# coding: utf-8
+#common
+obj "builDing"
+name "YIC-Mk_EX-/platform-1f_1"
+copyright "wa / M.Kousaka"
+#DratBuilding.group "station"
+#group "station"
+dims 1,1,16
+type "stop"
+enables "pax"
+level 3
+waytype "track"
+_image "platform-f_fence"
+cursor 5
+icon 4
+offset 2,0
+_snow 1
+#infos(['info','construction','ground'])
+infos(['ground'])
+frontImage{
+  siz = 0..@dim_t.to_i - 1
+  y_pos = 0
+  y_pos.to_i
+
+  siz.each do |pos|
+    line = "FrontImage[#{pos}][0][0][0][0][0]=#{@image}"
+    if pos.to_i < 8
+      if pos.to_i == 0 || (pos.to_i % 2) == 0
+        puts line.to_s + ".#{y_pos}.#{@offset_x}"
+      else
+        puts line.to_s + ".#{y_pos}.#{@offset_x + 1}"
+        y_pos += 1
+      end
+    else
+      if pos.to_i == 0 || (pos.to_i % 2) == 0
+        puts line.to_s + ".#{y_pos}.#{@offset_x - 2}"
+      else
+        puts line.to_s + ".#{y_pos}.#{(@offset_x - 2)+ 1}"
+        y_pos += 1
+      end
+    end
+    if pos.to_i == 7
+      puts "\n"
+      y_pos = 0
+    end
+  end
+  puts "\n"
+  if @snow == 1 # 降雪画像がある場合のみ追加処理
+    siz.each do |pos|
+      line = "FrontImage[#{pos}][0][0][0][0][1]=#{@image}"
+      if pos.to_i < 8
+        if pos.to_i == 0 || (pos.to_i % 2) == 0
+          puts line.to_s + ".#{y_pos}.#{@offset_x}"
+        else
+          puts line.to_s + ".#{y_pos}.#{@offset_x + 1}"
+          y_pos += 1
+        end
+      else
+        if pos.to_i == 0 || (pos.to_i % 2) == 0
+          puts line.to_s + ".#{y_pos}.#{@offset_x - 2}"
+        else
+          puts line.to_s + ".#{y_pos}.#{(@offset_x - 2)+ 1}"
+          y_pos += 1
+        end
+      end
+      if pos.to_i == 7
+        puts "\n"
+        y_pos = 4
+      end
+    end
+  end
+}
+
+backImage{
+  siz = 0..@dim_t.to_i - 1
+  y_pos = 0
+  y_pos.to_i
+
+  siz.each do |pos|
+    line = "BackImage[#{pos}][0][0][0][0][0]=#{@image}"
+    if pos.to_i < 8
+      if pos.to_i == 0 || (pos.to_i % 2) == 0
+        puts line.to_s + ".#{y_pos}.#{@offset_x}"
+      else
+        puts line.to_s + ".#{y_pos}.#{@offset_x + 1}"
+        y_pos += 1
+      end
+    else
+      if pos.to_i == 0 || (pos.to_i % 2) == 0
+        puts line.to_s + ".#{y_pos}.#{@offset_x - 2}"
+      else
+        puts line.to_s + ".#{y_pos}.#{(@offset_x - 2)+ 1}"
+        y_pos += 1
+      end
+    end
+    if pos.to_i == 7
+      puts "\n"
+      y_pos = 4
+    end
+  end
+  puts "\n"
+
+  if @snow == 1 # 降雪画像がある場合のみ追加処理
+    y_pos = 4 
+    siz.each do |pos|
+      line = "BackImage[#{pos}][0][0][0][0][1]=#{@image}"
+      if pos.to_i < 8
+        if pos.to_i == 0 || (pos.to_i % 2) == 0
+          puts line.to_s + ".#{y_pos}.#{@offset_x}"
+        else
+          puts line.to_s + ".#{y_pos}.#{@offset_x + 1}"
+          y_pos += 1
+        end
+      else
+        if pos.to_i == 0 || (pos.to_i % 2) == 0
+          puts line.to_s + ".#{y_pos}.#{@offset_x - 2}"
+        else
+          puts line.to_s + ".#{y_pos}.#{(@offset_x - 2)+ 1}"
+          y_pos += 1
+        end
+      end
+      if pos.to_i == 7
+        puts "\n"
+        y_pos = 4
+      end
+    end
+  end
+}
