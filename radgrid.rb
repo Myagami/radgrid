@@ -3,23 +3,25 @@ class Radgrid
   require_relative 'radgrid_vehicle'
   include RadgridBuilding
   include RadgridVehicle
+  attr_accessor :group,:image
   def initialize 
   end
 
 #common method
-  
   def obj(param) #object type check
     case param
     when /^Building$/i
-
       puts "obj=building"
+
+    when /^Vehicle$/i
+      puts "obj=vehicle"
     else
       puts "none type #{param}"
     end
   end
 
   def name(param) # name rule check
-    if /[\/\s]/ === param
+    if /[\/]/ === param
       puts "Error: name in \"/\" "
       puts "name=#{param}"
     else
@@ -30,40 +32,24 @@ class Radgrid
   def copyright(author)
     puts "copyright=#{author}"
   end
-                
+
+  def _group(value)
+    @group = value
+  end
   
-  # def group(value)
-  #    @group = value
-  #  end
-
-
-
-  
-  def param(key,value)
-    
+  def type(param)
+    puts "type=#{param}"
   end
   
   def method_missing(name,value) # undefined method call 
     puts "Undefined: #{name} = #{value}"
     #puts "#{name}=#{value}"
   end
-
-
-
-  
-  
-  def splits
-
-  end
   
   # imager method
   def _image(name) # set image name
     @image = name
     #puts name
-  end
-
-  def _snow(flag)
-    @snow = flag
   end
   
   def offset(x,y) # image region set
